@@ -1,13 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const app = express();
+
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/post-test', (req, res) => {
     console.log('Got body:', req.body);
-	let user=req.body.username;
 	console.log(user);
 	if(user=="piyush")
 	{
@@ -24,7 +24,24 @@ app.post('/post-test', (req, res) => {
     res.sendStatus(200);
 });
 app.post('/qrform_post', (req, res) => {
-
+	console.log('Got body:', req.body);
+	var MongoClient = require('mongodb').MongoClient;
+	var url = "mongodb://localhost:27017/qrcode";
+	MongoClient.connect(url, function(err, db) 
+	{
+		if (err) throw err;
+		var dbo = db.db("qrcode");
+		var email=req.body.Batch_Number;
+		var pass=req.body.Product_Name;
+		var use=req.body.Name_of_Manufacture;
+		var myobj = { Username:use,Password:pass,Email:email };
+		dbo.collection("user").insertOne(myobj, function(err, res) 
+		{
+			if (err) throw err;
+			db.close();
+		});
+	});  
+	res.redirect('/login.html');
     res.sendStatus(200);
 });
 
@@ -81,7 +98,7 @@ app.post('/signup_post', (req, res) => {
 			db.close();
 		});
 	});  
-	res.redirect('/login.html');
+	res.redirect('/form.html');
     res.sendStatus(200);
 });
 
@@ -92,6 +109,7 @@ app.get('/login.html',function(req,res){
 	res.sendfile('login.html');
 });
 app.get('/form.html',function(req,res){
+	//console.log(req.session.user);
 	res.sendfile('form.html');
 });
 app.get('/signup.html',function(req,res){
