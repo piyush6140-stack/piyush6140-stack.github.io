@@ -15,8 +15,6 @@
 			<li><a href="#">Portfolios</a></li>
 			<li><a href="#">About</a></li> 
 			<li><a href="#">Contact Us</a></li>
-			<li><a href="record">Record</a></li>
-			<li><a href="logout">Log Out</a></li>
 		</ul>
 	</nav>
 </header>
@@ -232,7 +230,7 @@ form fieldset a {
 form fieldset a:hover { text-decoration: underline; }
 
 body {
-  background-image: url('https://wallpaperaccess.com/full/1660002.jpg');
+  background-image: url('bg-1.jpg');
 }
 
 </style>
@@ -244,8 +242,7 @@ body {
   
  
 <p><canvas id="qr-code"></canvas><br/></p>
-
-  <form onSubmit="downloadCanvas(event)" id="usrform"  method="POST" action="http://localhost:8080/qrform_post"   >
+  <form id="usrform"   onsubmit="downloadCanvas()">
 
     <fieldset>
 
@@ -280,10 +277,8 @@ qr = new QRious({
                     size: 200,
                     value: 'Name of Manufacture:XYZ ltd\nRegisteration Number: U72200MH2009PLC123456\nBatch Number:A1\nUniqueID:AAAA\nProduct Info'
                 });
-function downloadCanvas(e)
-{  
-e.preventDefault(); 
-var zip = new JSZip();
+function downloadCanvas()
+{  var zip = new JSZip();
 zip.file("Hello.txt", "Hello World\n");
 var img = zip.folder("images");
 	var t1=document.getElementById("f1").value;
