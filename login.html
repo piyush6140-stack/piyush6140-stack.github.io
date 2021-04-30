@@ -1,6 +1,96 @@
-<html>
-<body>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Login</title>
+	<link rel="stylesheet" href="navbar.css">
+	<link href="https://fonts.googleapis.com/css? family=Alfa+Slab+One | Open+Sans" rel="stylesheet">
+</head>
+
+<header>
+	<h1>QR<span>GENERATOR</span></h1>
+	<nav>
+		<ul>
+			<li><a href="/index.html">Home</a></li>
+			<li><a href="#">Portfolios</a></li>
+			<li><a href="#">About</a></li> 
+			<li><a href="#">Contact Us</a></li>
+		</ul>
+	</nav>
+</header>
+
 <style>
+
+header{
+	position: absolute;
+	padding-top: 0px;
+    width: 100%;
+    height: 70px;
+    overflow: hidden;
+    box-shadow: 1px 10px 30px -10px rgba(0,0,0,0.5);
+}
+
+h1{
+    position: fixed;
+    padding: 3px;
+    float: left;
+    margin-left: 2%;
+    margin-top: 15px;
+    font-size: 30px;
+    font: 'Calibri';
+    color:rgb(0, 204, 0)
+}
+
+span{
+	font-size: 30px;
+    color: #000000;
+}
+
+ul{
+    width: auto;
+    float: right;
+    margin-top: 8px;
+}
+
+li{
+	font-size: 20px;
+    display: inline-block;
+    padding: 15px 30px;
+    float: left;
+}
+
+a{
+    text-align: center;
+    color: #000000;
+    text-decoration: none;
+    font-family: 'Calibri';
+    font-size: 1.5vw;
+}
+
+a:hover{
+	width: 100px;
+    height: 100px;
+    border: none;
+    color: 000000;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1;
+    color: #ac3333
+    box-shadow: 0 9px #999;
+    transform: translateY(-10px);
+    transition: 0.5;
+}
+
+
+* {
+  margin: 0px auto;
+  padding: 0px;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
 @import url(https://weloveiconfonts.com/api/?family=fontawesome);
 
 /* ---------- ERIC MEYER'S RESET CSS ---------- */
@@ -29,9 +119,9 @@ body {
 
 a { text-decoration: none; }
 
-h1 { font-size: 1em; }
+h1 { font-size: 30px; }
 
-h1, p {
+p {
 	margin-bottom: 10px;
 }
 
@@ -114,7 +204,7 @@ form fieldset input[type="submit"] {
 	font-family: inherit;
 	height: 50px;
 	text-transform: uppercase;
-	width: 300px;
+	width: 100px;
 }
 
 form fieldset a {
@@ -124,14 +214,17 @@ form fieldset a {
 
 form fieldset a:hover { text-decoration: underline; }
 
-
-
+body {
+  background-image: url('https://wallpaperaccess.com/full/1660002.jpg');
+}
 
 </style>
+
+<body>
 <div id="login">
 
 <button class="sign_up" onclick="location.href='signup.html';">SIGN UP</button>
-  <h1><strong>Welcome.</strong> Please login.</h1>
+  <h2><strong>Welcome.</strong> Please login.</h2>
 
   <form action="http://localhost:8080/login_post" method="POST">
 

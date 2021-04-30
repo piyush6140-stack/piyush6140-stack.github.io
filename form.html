@@ -1,6 +1,95 @@
 <html>
+<head>
+	<meta charset="utf-8">
+	<title>Generate QR</title>
+	<link rel="stylesheet" href="navbar.css">
+	<link href="https://fonts.googleapis.com/css? family=Alfa+Slab+One | Open+Sans" rel="stylesheet">
+</head>
+
+
+<header>
+	<h1>QR<span>GENERATOR</span></h1>
+	<nav>
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="#">Portfolios</a></li>
+			<li><a href="#">About</a></li> 
+			<li><a href="#">Contact Us</a></li>
+			<li><a href="record">Record</a></li>
+			<li><a href="logout">Log Out</a></li>
+		</ul>
+	</nav>
+</header>
+
 <body>
 <style>
+
+header{
+    width: 100%;
+    height: 70px;
+    overflow: hidden;
+    box-shadow: 1px 10px 30px -10px rgba(0,0,0,0.5);
+}
+
+h1{
+    position: fixed;
+    padding: 3px;
+    float: left;
+    margin-left: 2%;
+    margin-top: 15px;
+    font-size: 30px;
+    font: 'Calibri';
+    color:rgb(0, 204, 0)
+}
+
+span{
+	font-size: 30px;
+    color: #000000;
+}
+
+ul{
+    width: auto;
+    float: right;
+    margin-top: 8px;
+}
+
+li{
+	font-size: 20px;
+    display: inline-block;
+    padding: 15px 30px;
+    float: left;
+}
+
+a{
+    text-align: center;
+    color: #000000;
+    text-decoration: none;
+    font-family: 'Calibri';
+    font-size: 1.5vw;
+}
+
+a:hover{
+	width: 100px;
+    height: 100px;
+    border: none;
+    color: 000000;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1;
+    color: #ac3333
+    box-shadow: 0 9px #999;
+    transform: translateY(-10px);
+    transition: 0.5;
+}
+
+
+* {
+  margin: 0px auto;
+  padding: 0px;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
 @import url(https://weloveiconfonts.com/api/?family=fontawesome);
 
 /* ---------- ERIC MEYER'S RESET CSS ---------- */
@@ -17,8 +106,8 @@
 /* ---------- GENERAL ---------- */
 
 body {
-	background: #f4f4f4;
-	color: #5a5656;
+  background: #f4f4f4;
+  color: #5a5656;
   display: grid;
   font-family: 'Open Sans', sans-serif;
   line-height: 1.5;
@@ -29,7 +118,7 @@ body {
 
 a { text-decoration: none; }
 
-h1 { font-size: 1em; }
+h1 { font-size: 30px; }
 
 h1, p {
 	margin-bottom: 10px;
@@ -123,7 +212,7 @@ input[type="password"] {
 }
 
 form fieldset input[type="submit"] {
-  appearance: none;
+  	appearance: none;
 	background-color: #008dde;
 	border: none;
 	border-radius: 3px;
@@ -132,7 +221,7 @@ form fieldset input[type="submit"] {
 	font-family: inherit;
 	height: 50px;
 	text-transform: uppercase;
-	width: 300px;
+	width: 100px;
 }
 
 form fieldset a {
@@ -142,25 +231,27 @@ form fieldset a {
 
 form fieldset a:hover { text-decoration: underline; }
 
-
-
+body {
+  background-image: url('https://wallpaperaccess.com/full/1660002.jpg');
+}
 
 </style>
 
 <div id="login">
 
 
-  <h1><strong>Sample QRCODE.</strong> Enter Details.</h1>
+  <h2><strong>Sample QR</strong> Enter Details.</h2>
   
  
 <p><canvas id="qr-code"></canvas><br/></p>
-  <form  id="usrform"   onsubmit="downloadCanvas()">
+
+  <form onSubmit="downloadCanvas(event)" id="usrform"  method="POST" action="http://localhost:8080/qrform_post"   >
 
     <fieldset>
 
       <p><input type="text" name="Name_of_Manufacture" id="f1" required value="" placeholder="Name of Manufacture"></p>
 
-      <p><input type="text" name="Registeration_Number" id="f2" required value="" placeholder="Registeration Number(CIN last 6 digits	)"></p>
+      <p><input type="text" name="Registeration_Number" id="f2" required value="" placeholder="Registeration Number(CIN last 6 digits)"></p>
 	  
 	  <p><input type="text" name="Batch_Number" id="f3" required value="" placeholder="Batch Number"></p>
 	  
@@ -168,7 +259,7 @@ form fieldset a:hover { text-decoration: underline; }
 	  
 	  <p><input type="text" name="Number_Products_in_Batch" id="f5" required value="" placeholder="Number Products in Batch"></p>
 	  	  
-	  <p><textarea name="comment" form="usrform" id="f6" value="" placeholder="Enter text here..."></textarea></p>
+	  <p><textarea name="comment" form="usrform" id="f6" value="" placeholder="Enter product details here."></textarea></p>
 				
       <p><input type="submit" value="Generate"></p>
 	  
@@ -189,8 +280,10 @@ qr = new QRious({
                     size: 200,
                     value: 'Name of Manufacture:XYZ ltd\nRegisteration Number: U72200MH2009PLC123456\nBatch Number:A1\nUniqueID:AAAA\nProduct Info'
                 });
-function downloadCanvas()
-{  var zip = new JSZip();
+function downloadCanvas(e)
+{  
+e.preventDefault(); 
+var zip = new JSZip();
 zip.file("Hello.txt", "Hello World\n");
 var img = zip.folder("images");
 	var t1=document.getElementById("f1").value;
